@@ -1,6 +1,8 @@
 'use client'
 
 import { useRef, useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; 
 import { addTask } from '../lib/actions';
 
 export default function TaskForm() {
@@ -10,14 +12,21 @@ export default function TaskForm() {
   async function action(formData) {
     setIsSubmitting(true);
     const result = await addTask(formData);
+    
     if (!result.error) {
       formRef.current?.reset();
+      toast.success('Task added successfully!', { position: 'top-right', autoClose: 2000 });
+    } else {
+      toast.error('Failed to add task.', { position: 'top-right', autoClose: 2000 });
     }
+    
     setIsSubmitting(false);
   }
 
   return (
     <div className="w-full max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
+      <ToastContainer />
+      
       <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl shadow-lg transform transition-all duration-300 hover:shadow-xl">
         <div className="p-6 sm:p-8">
           <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center animate-fade-in">

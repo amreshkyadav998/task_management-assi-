@@ -48,7 +48,7 @@ npm run dev
 2. Create a new project on Vercel
 3. Connect your GitHub repository
 4. Add your MongoDB connection string to the environment variables
-5. Deploy!
+5. Deploy.
 
 ## Project Structure
 
